@@ -1,5 +1,12 @@
 {
-  "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true
-  }
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": true
+    },
+    "editor.formatOnSave": true,
+    "[typescript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "editor.rulers": [80],
+    "cSpell.words": ["Parens"],
+    "cSpell.language": "en,pt,pt_PT"
 }
