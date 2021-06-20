@@ -1,0 +1,32 @@
+service:
+  name: ${self:provider.environment.serviceName}
+
+custom:
+  serverless-offline:
+    useChildProcesses: true
+  webpack:
+    webpackConfig: ./webpack.config.js
+    includeModules: true
+  splitStacks:
+    perFunction: true
+    perType: false
+
+plugins:
+  - serverless-webpack
+  - serverless-pseudo-parameters
+  - serverless-offline
+  - serverless-plugin-split-stacks
+
+package:
+  excludeDevDependencies: true
+  individually: true
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  stage: ${opt:stage, "dev"}
+  environment: ${file(./config/env.${self:provider.stage}.json)}
+
+functions:
+  #   - ${file(./config/serverless/functions/auth.functions.yaml)}
+  - ${file(./config/serverless/functions/watch.functions.yaml)}

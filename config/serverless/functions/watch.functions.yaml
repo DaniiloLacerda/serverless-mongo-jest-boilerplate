@@ -1,0 +1,11 @@
+watchCreate:
+  handler: src/functions/watchFunctions.create
+  timeout: 30
+  events:
+    - http:
+        method: POST
+        path: watch
+        cors: true
+        # authorizer:
+        #   name: authorizer
+        #   resultTtlInSeconds: 0

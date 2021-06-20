@@ -1,0 +1,61 @@
+{
+    "compilerOptions": {
+        "lib": [
+            "es2017",
+            "es6"
+        ],
+        "skipLibCheck": true,        
+        "esModuleInterop": true,
+        "removeComments": true,
+        "moduleResolution": "node",
+        "noUnusedLocals": false,
+        "noUnusedParameters": false,
+        "sourceMap": true,
+        "resolveJsonModule": true,
+        "target": "es2017",
+        "outDir": "lib",
+        "baseUrl": "./",
+        "paths": {
+            "@config/*": [
+                "src/core/config/*"
+            ],
+            "@factories/*": [
+                "src/core/factories/*"
+            ],
+            "@middlewares/*": [
+                "src/core/middlewares/*"
+            ],
+            "@models/*": [
+                "src/core/models/*"
+            ],
+            "@services/*": [
+                "src/core/services/*"
+            ],
+            "@repositories/*": [
+                "src/core/repositories/*"
+            ],
+            "@utils/*": [
+                "src/core/utils/*"
+            ],
+            "@functions/*": [
+                "src/functions/*"
+            ],
+            "@test/*": [
+                "test/*"
+            ],
+            "@interfaces/*": [
+                "src/core/interfaces/*"
+            ]
+        }
+    },
+    "include": [
+        "./**/*.ts"
+    ],
+    "exclude": [
+        "node_modules/**/*",
+        ".serverless/**/*",
+        ".webpack/**/*",
+        "_warmup/**/*",
+        ".vscode/**/*"
+    ]
+}
