@@ -1,5 +1,5 @@
 watchCreate:
-  handler: src/functions/watchFunctions.create
+  handler: src/functions/watch.functions.create
   timeout: 30
   events:
     - http:

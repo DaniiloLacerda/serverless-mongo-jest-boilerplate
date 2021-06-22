@@ -6,7 +6,11 @@
     "[typescript]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
-    "editor.rulers": [80],
-    "cSpell.words": ["Parens"],
+    "editor.rulers": [
+        96
+    ],
+    "cSpell.words": [
+        "Parens"
+    ],
     "cSpell.language": "en,pt,pt_PT"
 }

@@ -28,5 +28,5 @@ provider:
   environment: ${file(./config/env.${self:provider.stage}.json)}
 
 functions:
-  #   - ${file(./config/serverless/functions/auth.functions.yaml)}
+  - ${file(./config/serverless/functions/auth.functions.yaml)}
   - ${file(./config/serverless/functions/watch.functions.yaml)}

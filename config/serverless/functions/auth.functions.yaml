@@ -1,11 +1,11 @@
-# authorizer:
-#   handler: src/functions/authFunctions.validate
+authorizer:
+  handler: src/functions/auth.functions.validate
 
-# token:
-#   handler: src/functions/authFunctions.token
-#   timeout: 30
-#   events:
-#     - http:
-#         method: POST
-#         path: token
-#         cors: true
+token:
+  handler: src/functions/auth.functions.token
+  timeout: 30
+  events:
+    - http:
+        method: POST
+        path: token
+        cors: true
