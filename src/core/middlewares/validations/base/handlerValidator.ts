@@ -16,9 +16,12 @@ export const handlerValidator =
     }
 
     const { rules, argType } = requestValidation;
-    const data = event[argType];
-    const { value, isValid, errors } = validateEvent(data, argType, rules);
+    const data =
+      typeof event[argType] === 'string'
+        ? JSON.parse(event[argType.toString()])
+        : event[argType];
 
+    const { value, isValid, errors } = validateEvent(data, argType, rules);
     if (isValid) {
       event[argType] = value;
       return handler(event, context);

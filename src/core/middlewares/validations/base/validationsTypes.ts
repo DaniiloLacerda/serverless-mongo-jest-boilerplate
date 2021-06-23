@@ -7,7 +7,7 @@ export enum ArgTypes {
 }
 
 export interface requestValidation {
-  argType: ArgTypes;
+  argType: string;
   rules: {};
 }
 
