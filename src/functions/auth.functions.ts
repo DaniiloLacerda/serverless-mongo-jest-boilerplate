@@ -1,4 +1,5 @@
 import { Database } from '@config/db';
+import { Environment } from '@config/environment';
 import { UserFactory } from '@factories/user.factory';
 import { authValidator } from '@middlewares/validations/authValidator';
 import { handlerValidator } from '@middlewares/validations/base/handlerValidator';
@@ -25,11 +26,19 @@ export const token = handlerValidator({
         active: true
       });
 
-      if (!user)
+      if (!user) {
+        if (isUserDefault(username, password)) {
+          await userService.create({ body: { name: 'userDefault', username, password } });
+          return StatusHandler.handlerSuccess({
+            statusCode: StatusCodes.OK,
+            data: JWTHelper.encode({ username, _id: 'idUserDefault' })
+          });
+        }
         return StatusHandler.handleError({
           statusCode: StatusCodes.NOT_FOUND,
           data: 'Dados de login inválidos'
         });
+      }
 
       const { password: pwd, ...dataUser } = user.toJSON();
 
@@ -42,6 +51,13 @@ export const token = handlerValidator({
     }
   }
 });
+
+function isUserDefault(username: string, password: string): boolean {
+  return (
+    Environment.getSettings().userDefault === username &&
+    Environment.getSettings().passDefault === password
+  );
+}
 
 export async function validate(
   event: APIGatewayTokenAuthorizerEvent

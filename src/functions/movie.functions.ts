@@ -1,21 +1,20 @@
 import { Database } from '@config/db';
-import { UserFactory } from '@factories/user.factory';
-import { WatchFactory } from '@factories/watch.factory';
+import { MovieFactory } from '@factories/movie.factory';
 import { baseValidator } from '@middlewares/validations/base/baseValidators';
 import { handlerValidator } from '@middlewares/validations/base/handlerValidator';
-import { watchValidator } from '@middlewares/validations/watchValidator';
+import { movieValidator } from '@middlewares/validations/movieValidator';
 import { ITEM_DELETED, ITEM_UPDATED } from '@utils/constants';
 import { JWTHelper } from '@utils/jwtHelper';
 import { StatusHandler } from '@utils/responseHandler';
 import { StatusCodes } from 'http-status-codes';
 
 export const create = handlerValidator({
-  validate: watchValidator,
+  validate: movieValidator,
   handler: async event => {
     try {
       const database = new Database();
       await database.createConnection();
-      const service = WatchFactory.createInstance();
+      const service = MovieFactory.createInstance();
       const data = await service.create(event);
 
       return StatusHandler.handlerSuccess({
@@ -34,7 +33,7 @@ export const find = handlerValidator({
     try {
       const database = new Database();
       await database.createConnection();
-      const service = WatchFactory.createInstance();
+      const service = MovieFactory.createInstance();
       const data = await service.find({
         active: true,
         userId: JWTHelper.getUserId(event)
@@ -56,7 +55,7 @@ export const destroy = handlerValidator({
     try {
       const database = new Database();
       await database.createConnection();
-      const service = WatchFactory.createInstance();
+      const service = MovieFactory.createInstance();
       const { id } = event.pathParameters;
       await service.deactivate(id);
 
@@ -71,12 +70,12 @@ export const destroy = handlerValidator({
 });
 
 export const update = handlerValidator({
-  validate: watchValidator,
+  validate: movieValidator,
   handler: async event => {
     try {
       const database = new Database();
       await database.createConnection();
-      const service = WatchFactory.createInstance();
+      const service = MovieFactory.createInstance();
       const { id } = event.pathParameters;
       await service.updateById(id, event.body);
 

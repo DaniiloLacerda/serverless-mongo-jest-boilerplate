@@ -6,7 +6,9 @@ export class Environment {
     return {
       nodeEnv: env('NODE_ENV').asString(),
       dbUrl: env('DB_URL').asString(),
-      dbName: env('DB_NAME').asString()
+      dbName: env('DB_NAME').asString(),
+      userDefault: env('USER_DEFAULT').asString(),
+      passDefault: env('PASS_DEFAULT').asString()
     };
   }
 }

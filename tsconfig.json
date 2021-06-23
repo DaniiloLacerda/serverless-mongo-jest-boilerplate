@@ -4,7 +4,7 @@
             "es2017",
             "es6"
         ],
-        "skipLibCheck": true,        
+        "skipLibCheck": true,
         "esModuleInterop": true,
         "removeComments": true,
         "moduleResolution": "node",

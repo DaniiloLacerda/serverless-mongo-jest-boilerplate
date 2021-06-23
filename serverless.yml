@@ -29,4 +29,4 @@ provider:
 
 functions:
   - ${file(./config/serverless/functions/auth.functions.yaml)}
-  - ${file(./config/serverless/functions/watch.functions.yaml)}
+  - ${file(./config/serverless/functions/movie.functions.yaml)}

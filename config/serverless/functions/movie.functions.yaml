@@ -1,46 +1,46 @@
-watchCreate:
-  handler: src/functions/watch.functions.create
+movieCreate:
+  handler: src/functions/movie.functions.create
   timeout: 30
   events:
     - http:
         method: POST
-        path: watch
+        path: movie
         cors: true
         authorizer:
           name: authorizer
           resultTtlInSeconds: 0
 
-watchFind:
-  handler: src/functions/watch.functions.find
+movieFind:
+  handler: src/functions/movie.functions.find
   timeout: 30
   events:
     - http:
         method: GET
-        path: watch
+        path: movie
         cors: true
         authorizer:
           name: authorizer
           resultTtlInSeconds: 0
 
-watchDelete:
-  handler: src/functions/watch.functions.destroy
+movieDelete:
+  handler: src/functions/movie.functions.destroy
   timeout: 30
   events:
     - http:
         method: DELETE
-        path: watch/{id}
+        path: movie/{id}
         cors: true
         authorizer:
           name: authorizer
           resultTtlInSeconds: 0
 
-watchUpdate:
-  handler: src/functions/watch.functions.update
+movieUpdate:
+  handler: src/functions/movie.functions.update
   timeout: 30
   events:
     - http:
         method: PUT
-        path: watch/{id}
+        path: movie/{id}
         cors: true
         authorizer:
           name: authorizer

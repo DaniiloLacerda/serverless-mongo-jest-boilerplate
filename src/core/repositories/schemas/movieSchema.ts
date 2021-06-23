@@ -1,10 +1,10 @@
-import { IWatch, WatchTypeEnum } from '@interfaces/models/watch.interface';
+import { IMovie, MovieTypeEnum } from '@interfaces/models/movie.interface';
 import { model, Model, models, Schema } from 'mongoose';
 
-export class Watch {
-  private _model: Model<IWatch>;
+export class Movie {
+  private _model: Model<IMovie>;
 
-  private watchSchema = new Schema(
+  private movieSchema = new Schema(
     {
       active: {
         type: Boolean,
@@ -29,8 +29,8 @@ export class Watch {
       type: {
         type: String,
         required: false,
-        enum: [WatchTypeEnum.MOVIE, WatchTypeEnum.SERIE],
-        default: WatchTypeEnum.MOVIE
+        enum: [MovieTypeEnum.MOVIE, MovieTypeEnum.SERIE],
+        default: MovieTypeEnum.MOVIE
       },
       userId: {
         type: Schema.Types.ObjectId,
@@ -44,10 +44,10 @@ export class Watch {
   );
 
   constructor() {
-    this._model = models.Watch || model<IWatch>('Watch', this.watchSchema);
+    this._model = models.Movie || model<IMovie>('Movie', this.movieSchema);
   }
 
-  public get model(): Model<IWatch> {
+  public get model(): Model<IMovie> {
     return this._model;
   }
 }
