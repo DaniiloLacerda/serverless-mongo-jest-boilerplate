@@ -6,14 +6,14 @@
   "license": "MIT",
   "private": true,
   "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "testWithCoverage": "jest --coverage",
     "start:dev": "npx sls offline start --host 0.0.0.0",
     "style:check": "prettier --check 'src/**/*.ts' 'test/**/*.ts'",
     "lint": "eslint ./src --ext .ts",
     "lint:fix": "eslint ./src --ext .ts --fix",
-    "compile": "tsc -p . ",
-    "test": "jest",
-    "test:watch": "jest --watch",
-    "testWithCoverage": "jest --coverage"
+    "compile": "tsc -p . "
   },
   "devDependencies": {
     "@types/aws-lambda": "^8.10.77",
