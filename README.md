@@ -1,4 +1,4 @@
-# Serverless + Mongo + Jest - BoilerPlate
+# Serverless + Mongo + Jest - Boilerplate
 
 Model of project to work as base with Serverless.
 
