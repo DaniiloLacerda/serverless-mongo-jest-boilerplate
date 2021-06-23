@@ -18,7 +18,7 @@ export const create = handlerValidator({
       const data = await service.create(event);
 
       return StatusHandler.handlerSuccess({
-        statusCode: StatusCodes.OK,
+        statusCode: StatusCodes.CREATED,
         data
       });
     } catch (error) {

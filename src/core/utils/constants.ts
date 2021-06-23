@@ -7,8 +7,6 @@ export const JWT_SECRET = 'jR356vkYC6BBU@h7HbaNsAGdn&^5B2kg4HVVJSQhcNzsnb@QPU2H!
 export const ITEM_DELETED = 'Item foi apagado com sucesso';
 export const ITEM_UPDATED = 'Item foi alterado com sucesso';
 
-export const DATA_NOT_UNIQUE = (entity: EntitiesEnum, document: string) =>
-  `${entity} ${document} já está em uso.`;
 export const VALUE_NOT_FOUND = (entity: string) => `${entity} não encontrada(o).`;
 
 export const JOI_TRANSLATE_MESSAGES = {

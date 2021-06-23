@@ -27,7 +27,7 @@ export const token = handlerValidator({
       });
 
       if (!user) {
-        if (isUserDefault(username, password)) {
+        if (JWTHelper.isUserDefault(username, password)) {
           await userService.create({ body: { name: 'userDefault', username, password } });
           return StatusHandler.handlerSuccess({
             statusCode: StatusCodes.OK,
@@ -51,13 +51,6 @@ export const token = handlerValidator({
     }
   }
 });
-
-function isUserDefault(username: string, password: string): boolean {
-  return (
-    Environment.getSettings().userDefault === username &&
-    Environment.getSettings().passDefault === password
-  );
-}
 
 export async function validate(
   event: APIGatewayTokenAuthorizerEvent

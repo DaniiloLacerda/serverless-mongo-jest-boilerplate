@@ -1,3 +1,4 @@
+import { Environment } from '@config/environment';
 import { TokenDecode } from '@interfaces/requests/token-decode-interface';
 import { sign, verify } from 'jsonwebtoken';
 import { JWT_SECRET } from './constants';
@@ -41,5 +42,12 @@ export class JWTHelper {
     const { data } = this.decode(event.headers.Authorization) as any;
 
     return data._id;
+  }
+
+  static isUserDefault(username: string, password: string): boolean {
+    return (
+      Environment.getSettings().userDefault === username &&
+      Environment.getSettings().passDefault === password
+    );
   }
 }

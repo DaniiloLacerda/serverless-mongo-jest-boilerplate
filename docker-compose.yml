@@ -1,0 +1,24 @@
+mongo:
+  image: mongo
+  restart: always
+  container_name: mongo
+  volumes:
+    - ./mongo_data:/data/db
+  ports:
+    - 27017:27017
+mongo-express:
+  image: mongo-express
+  restart: always
+  container_name: mongo-express
+  ports:
+    - 8081:8081
+  links:
+    - mongo:mongo
+  volumes:
+    - ./config.js:/node_modules/mongo-express/config.js
+  environment:
+    - ME_CONFIG_BASICAUTH_USERNAME=admin
+    - ME_CONFIG_BASICAUTH_PASSWORD=admin@123
+    - ME_CONFIG_MONGODB_SERVER=mongo
+    - ME_CONFIG_MONGODB_PORT=27017
+    - ME_CONFIG_MONGODB_ENABLE_ADMIN=true
