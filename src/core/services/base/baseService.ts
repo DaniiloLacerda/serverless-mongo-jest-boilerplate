@@ -1,4 +1,4 @@
-import { BaseRepository } from '@repositories/base/baseRepository';
+import { BaseRepository } from '@repositories/base/base.repository';
 import { StatusCodes } from 'http-status-codes';
 import { Document } from 'mongoose';
 import { CONTENT_TYPE_JSON, VALUE_NOT_FOUND } from '../../utils/constants';

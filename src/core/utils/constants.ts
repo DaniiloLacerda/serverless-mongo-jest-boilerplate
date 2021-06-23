@@ -4,6 +4,8 @@ export const CONTENT_TYPE_JSON = 'application/json';
 export const CONTENT_TYPE_TEXT = 'text/plain';
 export const PASSWORD_SALT = 'salt@sjbC@wC@cz@!7C6A6';
 export const JWT_SECRET = 'jR356vkYC6BBU@h7HbaNsAGdn&^5B2kg4HVVJSQhcNzsnb@QPU2H!&uZSQJRpk3!ZqE';
+export const ITEM_DELETED = 'Item foi apagado com sucesso';
+export const ITEM_UPDATED = 'Item foi alterado com sucesso';
 
 export const DATA_NOT_UNIQUE = (entity: EntitiesEnum, document: string) =>
   `${entity} ${document} já está em uso.`;

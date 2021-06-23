@@ -18,11 +18,13 @@ export const token = handlerValidator({
 
       const userService = UserFactory.createInstance();
       const { username, password } = event.body;
+
       const user = await userService.findOne({
         username: username.toLocaleLowerCase(),
         password: Password.encode(password),
         active: true
       });
+
       if (!user)
         return StatusHandler.handleError({
           statusCode: StatusCodes.NOT_FOUND,

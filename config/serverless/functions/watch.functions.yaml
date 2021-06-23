@@ -6,6 +6,42 @@ watchCreate:
         method: POST
         path: watch
         cors: true
-        # authorizer:
-        #   name: authorizer
-        #   resultTtlInSeconds: 0
+        authorizer:
+          name: authorizer
+          resultTtlInSeconds: 0
+
+watchFind:
+  handler: src/functions/watch.functions.find
+  timeout: 30
+  events:
+    - http:
+        method: GET
+        path: watch
+        cors: true
+        authorizer:
+          name: authorizer
+          resultTtlInSeconds: 0
+
+watchDelete:
+  handler: src/functions/watch.functions.destroy
+  timeout: 30
+  events:
+    - http:
+        method: DELETE
+        path: watch/{id}
+        cors: true
+        authorizer:
+          name: authorizer
+          resultTtlInSeconds: 0
+
+watchUpdate:
+  handler: src/functions/watch.functions.update
+  timeout: 30
+  events:
+    - http:
+        method: PUT
+        path: watch/{id}
+        cors: true
+        authorizer:
+          name: authorizer
+          resultTtlInSeconds: 0

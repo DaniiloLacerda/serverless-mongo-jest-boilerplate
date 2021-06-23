@@ -1,4 +1,4 @@
-import { UserRepository } from '@repositories/userRepository';
+import { UserRepository } from '@repositories/user.repository';
 import { CONTENT_TYPE_JSON, VALUE_NOT_FOUND } from '@utils/constants';
 import { Password } from '@utils/password';
 import { StatusCodes } from 'http-status-codes';

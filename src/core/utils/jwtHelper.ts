@@ -36,4 +36,10 @@ export class JWTHelper {
     const now = Date.now() / 1000;
     return data.exp > now;
   }
+
+  static getUserId(event) {
+    const { data } = this.decode(event.headers.Authorization) as any;
+
+    return data._id;
+  }
 }
