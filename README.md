@@ -34,7 +34,7 @@ sls install -u https://github.com/DaniiloLacerda/serverless-mongo-jest-boilerpla
 ### setting your mongo database and mongo express with docker compose
 
 ```bash
-docker-compuse up -d
+docker-compose up -d
 ```
 
 ### install dependencies of project
