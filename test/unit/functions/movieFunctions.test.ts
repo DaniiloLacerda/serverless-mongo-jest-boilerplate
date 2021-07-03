@@ -1,6 +1,6 @@
 import { Database } from '@config/db';
 import { MovieFactory } from '@factories/movie.factory';
-import { create, destroy, find, update } from '@functions/movie.functions';
+import { create, destroy, find, index, update } from '@functions/movie.functions';
 import { IHandlerReturn } from '@interfaces/responses/handlerSuccess.interface';
 import { indexFakeEvent, showFakeEvent } from '@test/helpers/mocks';
 import { ITEM_DELETED, ITEM_UPDATED } from '@utils/constants';
@@ -71,19 +71,14 @@ describe('Movie Functions', () => {
     expect(service.create).toHaveBeenCalledTimes(1);
   });
 
-  it('find: should find all movies', async () => {
+  it('index: should find all movies', async () => {
     jest.spyOn(MovieFactory, 'createInstance').mockReturnValue({
       find: jest.fn().mockResolvedValue({})
     } as any);
 
-    const createEvent = {
-      ...indexFakeEvent,
-      body: productsList[0]
-    };
-
     const database = new Database();
     const service = MovieFactory.createInstance();
-    const result = (await find(showFakeEvent as any, {} as any)) as IHandlerReturn;
+    const result = (await index(showFakeEvent as any, {} as any)) as IHandlerReturn;
 
     expect(database.createConnection).toHaveBeenCalledTimes(1);
     expect(service.find).toHaveBeenCalledTimes(1);
@@ -94,14 +89,14 @@ describe('Movie Functions', () => {
     expect(result.statusCode).toEqual(StatusCodes.OK);
   });
 
-  it('find: should throw new error', async () => {
+  it('index: should throw new error', async () => {
     jest.spyOn(MovieFactory, 'createInstance').mockReturnValue({
       find: jest.fn().mockRejectedValueOnce('throw error')
     } as any);
 
     const database = new Database();
     const service = MovieFactory.createInstance();
-    const result = (await find(showFakeEvent as any, {} as any)) as IHandlerReturn;
+    const result = (await index(showFakeEvent as any, {} as any)) as IHandlerReturn;
 
     expect(result.statusCode).toEqual(StatusCodes.INTERNAL_SERVER_ERROR);
     expect(JSON.parse(String(result.body))).toEqual('throw error');
@@ -167,5 +162,39 @@ describe('Movie Functions', () => {
     expect(service.updateById).toHaveBeenCalledTimes(1);
     expect(result.statusCode).toEqual(StatusCodes.INTERNAL_SERVER_ERROR);
     expect(JSON.parse(String(result.body))).toEqual('throw error');
+  });
+
+  it('find: should find some movies', async () => {
+    jest.spyOn(MovieFactory, 'createInstance').mockReturnValue({
+      findOne: jest.fn().mockResolvedValue({})
+    } as any);
+
+    const database = new Database();
+    const service = MovieFactory.createInstance();
+    const result = (await find(showFakeEvent as any, {} as any)) as IHandlerReturn;
+
+    expect(database.createConnection).toHaveBeenCalledTimes(1);
+    expect(service.findOne).toHaveBeenCalledTimes(1);
+    expect(service.findOne).toHaveBeenCalledWith({
+      active: true,
+      userId: 'userId',
+      _id: '60830b1184b8f20008c6d3fc'
+    });
+    expect(result.statusCode).toEqual(StatusCodes.OK);
+  });
+
+  it('find: should throw new error', async () => {
+    jest.spyOn(MovieFactory, 'createInstance').mockReturnValue({
+      findOne: jest.fn().mockRejectedValueOnce('throw error')
+    } as any);
+
+    const database = new Database();
+    const service = MovieFactory.createInstance();
+    const result = (await find(showFakeEvent as any, {} as any)) as IHandlerReturn;
+
+    expect(result.statusCode).toEqual(StatusCodes.INTERNAL_SERVER_ERROR);
+    expect(JSON.parse(String(result.body))).toEqual('throw error');
+    expect(database.createConnection).toHaveBeenCalledTimes(1);
+    expect(service.findOne).toHaveBeenCalledTimes(1);
   });
 });

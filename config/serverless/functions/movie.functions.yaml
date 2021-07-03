@@ -10,8 +10,8 @@ movieCreate:
           name: authorizer
           resultTtlInSeconds: 0
 
-movieFind:
-  handler: src/functions/movie.functions.find
+movieGet:
+  handler: src/functions/movie.functions.index
   timeout: 30
   events:
     - http:
@@ -40,6 +40,18 @@ movieUpdate:
   events:
     - http:
         method: PUT
+        path: movie/{id}
+        cors: true
+        authorizer:
+          name: authorizer
+          resultTtlInSeconds: 0
+
+movieFind:
+  handler: src/functions/movie.functions.find
+  timeout: 30
+  events:
+    - http:
+        method: GET
         path: movie/{id}
         cors: true
         authorizer:
