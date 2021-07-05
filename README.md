@@ -43,6 +43,12 @@ docker-compose up -d
 npm i
 ```
 
+### running development
+
+```bash
+npm run start:dev
+```
+
 ## Testing
 
 ### run unit tests with JEST
